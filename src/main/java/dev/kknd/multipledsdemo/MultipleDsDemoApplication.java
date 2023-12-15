@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import javax.sql.DataSource;
+
 @SpringBootApplication
 public class MultipleDsDemoApplication {
 
@@ -18,6 +20,13 @@ public class MultipleDsDemoApplication {
         return args -> {
             var posts = postService.findAll();
             System.out.println(posts);
+        };
+    }
+
+    @Bean
+    CommandLineRunner dsCommandLineRunner(DataSource dataSource) {
+        return args -> {
+            System.out.println(dataSource.getConnection().getMetaData());
         };
     }
 
