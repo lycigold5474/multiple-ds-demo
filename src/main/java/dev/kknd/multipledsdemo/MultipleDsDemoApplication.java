@@ -26,7 +26,7 @@ public class MultipleDsDemoApplication {
     @Bean
     CommandLineRunner dsCommandLineRunner(DataSource dataSource) {
         return args -> {
-            System.out.println(dataSource.getConnection().getMetaData());
+            System.out.println(dataSource.getConnection().getMetaData().getURL());
         };
     }
 
