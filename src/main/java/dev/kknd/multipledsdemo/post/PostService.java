@@ -1,5 +1,6 @@
 package dev.kknd.multipledsdemo.post;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.Optional;
 @Service
 public class PostService {
     private JdbcClient jdbcClient;
-    public PostService(JdbcClient jdbcClient) {
+    public PostService(@Qualifier("blogJdbcClient") JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
     }
 
