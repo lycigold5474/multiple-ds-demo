@@ -2,6 +2,7 @@ package dev.kknd.multipledsdemo;
 
 import dev.kknd.multipledsdemo.post.Post;
 import dev.kknd.multipledsdemo.post.PostService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,8 @@ import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.simple.JdbcClient;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -20,6 +23,16 @@ public class MultipleDsDemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MultipleDsDemoApplication.class, args);
+    }
+
+    @Bean
+    JdbcClient blogJdbcClient(@Qualifier("blogDataSource") DataSource dataSource) {
+        return JdbcClient.create(dataSource);
+    }
+
+    @Bean
+    JdbcClient subscriberJdbcClient(@Qualifier("subscriberDataSource") DataSource dataSource) {
+        return JdbcClient.create(dataSource);
     }
 
     @Bean
