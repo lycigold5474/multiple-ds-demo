@@ -46,10 +46,11 @@ public class MultipleDsDemoApplication {
     }
 
     @Bean
-    CommandLineRunner dsCommandLineRunner(DataSource dataSource) {
+    CommandLineRunner dsCommandLineRunner(@Qualifier("blogDataSource") DataSource blogDataSource, @Qualifier("subscriberDataSource") DataSource subscriberDataSource) {
         return args -> {
             try {
-                logger.info(dataSource.getConnection().getMetaData().getURL());
+                logger.info(blogDataSource.getConnection().getMetaData().getURL());
+                logger.info(subscriberDataSource.getConnection().getMetaData().getURL());
             } catch (SQLException e) {
                 logger.error("Error getting datasource URL", e);
             }

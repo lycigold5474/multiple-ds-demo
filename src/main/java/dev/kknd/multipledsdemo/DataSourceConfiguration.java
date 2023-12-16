@@ -44,13 +44,13 @@ public class DataSourceConfiguration {
 
     // SUBCRIBERS ============================================================
     @Bean
-    @ConfigurationProperties("app.datasource.subcribers")
-    public DataSourceProperties subscriberDataSourceProperties() {
+    @ConfigurationProperties("app.datasource.subscribers")
+    public DataSourceProperties subscribersDataSourceProperties() {
         return new DataSourceProperties();
     }
 
     @Bean
-    public DataSource subscriberDataSource(@Qualifier("subscribersDataSourceProperties") DataSourceProperties subscribersDataSourceProperties){
+    public DataSource subscriberDataSource(@Qualifier("subscribersDataSourceProperties") DataSourceProperties subscribersDataSourceProperties) {
         return DataSourceBuilder
                 .create()
                 .url(subscribersDataSourceProperties.getUrl())
